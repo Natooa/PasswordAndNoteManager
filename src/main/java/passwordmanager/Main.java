@@ -1,9 +1,9 @@
 package passwordmanager;
-import passwordmanager.controllerUI.ControllerUI;
+import passwordmanager.controllerUI.ControllerUIPassword;
 
 public class Main {
     public static void main(String[] args) {
-        ControllerUI controllerUI = new ControllerUI();
-        controllerUI.start();
+        ControllerUIPassword controllerUIPassword = new ControllerUIPassword();
+        controllerUIPassword.startPasswordMenu();
     }
 }
