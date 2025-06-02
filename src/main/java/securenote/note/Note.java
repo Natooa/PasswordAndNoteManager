@@ -13,4 +13,13 @@ public class Note {
     public String toString() {
         return "title: " + title + "\nNote: " + note;
     }
+
+    //change notes
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 }

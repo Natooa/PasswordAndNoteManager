@@ -4,8 +4,16 @@ public class Password {
     private String login;
     private String password;
     private String website;
+    private int id;
 
     public Password(String login, String password, String website) {
+        this.login = login;
+        this.password = password;
+        this.website = website;
+    }
+
+    public Password(int id, String login, String password, String website) {
+        this.id = id;
         this.login = login;
         this.password = password;
         this.website = website;
@@ -27,5 +35,21 @@ public class Password {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public int getId() {
+        return id;
     }
 }

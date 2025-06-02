@@ -1,6 +1,8 @@
 package passwordmanager.controllerUI;
 import java.util.Scanner;
 import java.util.List;
+
+import passwordmanager.DBpassword.PasswordDB;
 import passwordmanager.password.Password;
 import passwordmanager.passwordManagerService.PasswordService;
 
@@ -38,7 +40,8 @@ public class ControllerUIPassword {
 
         System.out.println("Enter website: ");
         String website = scanner.nextLine();
-        passwordService.addPassword(login, password, website);
+        Password newPass = new Password(login, password, website);
+        int row = PasswordDB.add(newPass);
     }
 
     private void showAllPassword(){
@@ -91,6 +94,13 @@ public class ControllerUIPassword {
                 return;
             }
             default -> System.out.println("invalid choice");
+        }
+
+        boolean success = passwordService.updatePassword(selectedPassword);
+        if(success) {
+            System.out.println("Password changed");
+        } else {
+            System.out.println("Password not updated");
         }
 
     }
