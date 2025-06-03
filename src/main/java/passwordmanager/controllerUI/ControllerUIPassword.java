@@ -12,7 +12,7 @@ public class ControllerUIPassword {
 
     public void startPasswordMenu(){
         while(true) {
-            System.out.println("\n1. Add Password \n2. Show All Passwords \n3. Change Password \n4. Exit");
+            System.out.println("\n1. Add Password \n2. Show All Passwords \n3. Change Password \n4. Delete Password \n5. Exit");
             System.out.println("Enter your choice: ");
             String choice = scanner.nextLine();
 
@@ -20,7 +20,8 @@ public class ControllerUIPassword {
                 case "1" -> addPassword();
                 case "2" -> showAllPassword();
                 case "3" -> changePassword();
-                case "4" -> {
+                case "4" -> deletePassword();
+                case "5" -> {
                     System.out.println("Bye");
                     return;
                 }
@@ -102,7 +103,40 @@ public class ControllerUIPassword {
         } else {
             System.out.println("Password not updated");
         }
+    }
 
+    public void deletePassword() {
+        List<Password> passwords = passwordService.getAllPasswords();
+        if(passwords.isEmpty()) {
+            System.out.println("No passwords found");
+            return;
+        }
+
+        showAllPassword();
+
+        System.out.println("Enter the index password you want to delete: ");
+
+        int index;
+        try{
+            index = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("invalid index");
+            return;
+        }
+
+        if(index < 0 || index >= passwords.size()) {
+            System.out.println("invalid index");
+            return;
+        }
+
+        Password selectedPassword = passwords.get(index);
+
+        boolean success = passwordService.deletePassword(selectedPassword);
+        if(success) {
+            System.out.println("Password deleted");
+        } else {
+            System.out.println("Password not deleted");
+        }
     }
 }
 

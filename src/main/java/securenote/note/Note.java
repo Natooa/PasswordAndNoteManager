@@ -3,8 +3,14 @@ package securenote.note;
 public class Note {
     private String title;
     private String note;
+    private int id;
 
     public Note(String title, String note) {
+        this.title = title;
+        this.note = note;
+    }
+    public Note(int id, String title, String note) {
+        this.id = id;
         this.title = title;
         this.note = note;
     }
@@ -21,5 +27,17 @@ public class Note {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getNote() {
+        return note;
     }
 }

@@ -15,4 +15,8 @@ public class PasswordService {
     public boolean updatePassword(Password password) {
         return PasswordDB.update(password, password.getId());
     }
+
+    public boolean deletePassword(Password password) {
+        return PasswordDB.remove(password.getId());
+    }
 }

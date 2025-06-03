@@ -82,4 +82,23 @@ public class PasswordDB {
             return false;
         }
     }
+
+    public static boolean remove (int id) {
+        String sql = "DELETE FROM passwords WHERE id = ?";
+
+        try (var conn = DB.connect()) {
+            if(conn == null) {
+                throw new SQLException("Connection is null");
+            }
+            try (var pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, id);
+
+                int rowsDelete = pstmt.executeUpdate();
+                return rowsDelete > 0;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(PasswordDB.class.getName()).log(Level.SEVERE, "remove failed: " + e.getMessage(), e);
+            return false;
+        }
+    }
 }
